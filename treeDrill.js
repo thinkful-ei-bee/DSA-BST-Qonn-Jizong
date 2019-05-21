@@ -24,6 +24,22 @@ function TreeHeight(tree){
   return Math.max(left,right)+1
 }
 
+function FindLargest(tree){
+  if(!tree.right){
+    return tree.value
+  }
+  return FindLargest(tree.right)
+}
+
+function findNthLargest(tree,n){
+  
+  while(n>1){    
+    tree.remove(FindLargest(tree))
+    n--
+  }
+  return FindLargest(tree)
+}
+
 function main(){
   Tree = new BinarySearchTree
   let array = [3,1,4,6,9,2,5,7]
@@ -34,6 +50,10 @@ function main(){
   console.log(tree(Tree))
   console.log('tree height')
   console.log(TreeHeight(Tree))
+  console.log('largest')
+  console.log(FindLargest(Tree))
+  console.log('third largest')
+  console.log(findNthLargest(Tree,3))
 }
 
 
